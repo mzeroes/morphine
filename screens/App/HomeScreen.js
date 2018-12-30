@@ -1,7 +1,8 @@
 import React from "react";
-import { Image, ScrollView, Text, View, StatusBar } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import { baseStyles } from "../../constants/Styles";
 import { userDetails } from "../../config/api";
+import UserProfileCard from "../../components/UserProfileCard";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -12,36 +13,37 @@ export default class HomeScreen extends React.Component {
     super(props);
     this.userdetails();
   }
+
   state = {
-    name: "Anon",
-    id: "3136"
+    user: {
+      id: "",
+      name: "",
+      image: "",
+      email: ""
+    }
   };
 
   userdetails = async () => {
-    const res = await userDetails();
-    var o = JSON.parse(res);
-    console.log(o);
-    this.setState({ name: o.name, id: o.id });
+    const results = await userDetails();
+    // eslint-disable-next-line no-console
+    console.log(results);
+    this.setState({
+      user: {
+        id: results.id, name: results.name
+      }
+    });
   };
+
   render() {
     return (
       <View style={baseStyles.container}>
-        <StatusBar barStyle="dark-content" />
         <ScrollView
-          style={baseStyles.container}
+          style={{
+            margin: 8, padding: 12
+          }}
           contentContainerStyle={baseStyles.contentContainer}
         >
-          <View style={baseStyles.imageContainer}>
-            <Image
-              source={require("../../assets/images/icon.png")}
-              style={baseStyles.welcomeImage}
-            />
-          </View>
-
-          <View style={baseStyles.baseContainer}>
-            <Text style={baseStyles.headingText}>Welcome {this.state.name}</Text>
-            <Text>Your Id is {this.state.id}</Text>
-          </View>
+          <UserProfileCard user={this.state.user} />
         </ScrollView>
       </View>
     );

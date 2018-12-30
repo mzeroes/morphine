@@ -1,72 +1,52 @@
 import React from "react";
-import { ScrollView, StyleSheet, Image, Text, View } from "react-native";
-import { WebBrowser } from "expo";
-import Touchable from "react-native-platform-touchable";
-import Colors from "../../config/Colors";
+import { FlatList, View } from "react-native";
+import { baseStyles } from "../../constants/Styles";
+import ProfileView from "../../components/ProfileCard";
 
-class LinksList extends React.Component {
+export default class LinksScreen extends React.Component {
+  static navigationOptions = {
+    header: null
+  };
+
+  state = {
+    users: []
+  }
+
+  constructor(props) {
+    super(props);
+    this.usersAsync();
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  keyExtractor = (item, index) => item.id;
+
+  usersAsync = async () => {
+    const response = await fetch("https://randomuser.me/api/?page=3&results=10&seed=abcd");
+    const { results } = await response.json();
+
+    const processUsers = user => ({
+      id: user.phone,
+      image: user.picture.medium,
+      name: `${user.name.first} ${user.name.last}`,
+      email: user.email,
+    });
+
+    const users = results.map(processUsers);
+    this.setState({
+      users
+    });
+  }
+
   render() {
+    const { users } = this.state;
     return (
-      <View>
-        <Text style={styles.optionsTitleText}>Resources</Text>
-        <Touchable
-          background={Touchable.Ripple("#ccc", false)}
-          style={styles.option}
-          onPress={()=>this.handlePressUrl("http://www.google.com")}
-        >
-          <View style={{ flexDirection: "row" }}>
-            <View style={styles.optionTextContainer}>
-              <Text style={styles.optionText}>Join us on Slack</Text>
-            </View>
-          </View>
-        </Touchable>
+      <View style={baseStyles.container}>
+        <FlatList
+          data={users}
+          renderItem={({ item }) => <ProfileView profileDetails={item} />}
+          keyExtractor={this.keyExtractor}
+        />
       </View>
     );
   }
-
-  handlePressUrl = (url) => {
-    WebBrowser.openBrowserAsync(url);
-  };
 }
-
-export default class LinksScreen extends React.Component {
-  static navigationOptions = { header: null };
-
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-        {/* Go ahead and delete ExpoLinksView and replace it with your
-         * content, we just wanted to provide you with some helpful links */}
-        <LinksList />
-      </ScrollView>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 30,
-    backgroundColor: Colors.background
-  },
-  optionsTitleText: {
-    fontSize: 16,
-    marginLeft: 15,
-    marginTop: 9,
-    marginBottom: 12
-  },
-  optionIconContainer: {
-    marginRight: 9
-  },
-  option: {
-    backgroundColor: "#fdfdfd",
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "#EDEDED"
-  },
-  optionText: {
-    fontSize: 15,
-    marginTop: 1
-  }
-});

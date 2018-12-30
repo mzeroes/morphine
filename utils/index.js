@@ -7,7 +7,7 @@ export const handleUrl = url => {
   WebBrowser.openBrowserAsync(url);
 };
 
-onPressLogout = async () => {
+export const onPressLogoutAsync = async () => {
   await AsyncStorage.setItem("userToken", "");
   // add some latency
   setTimeout(() => { }, 4000); // add some function to confirm

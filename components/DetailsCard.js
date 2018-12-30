@@ -25,12 +25,10 @@ export default DetailsCard = ( details ) => {
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flex: 1,
     borderWidth: 2,
-    borderRadius: 8,
+    borderRadius: 12,
     borderColor: colors.grey,
-    padding: 8,
-    marginTop: 40,
+    padding: 12,
     marginBottom: 40
   },
   titleSubContainer: {
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
   descriptionText: {
     fontSize: 14,
     marginTop: 6,
-    color: colors.grey
+    color: colors.secondary
   },
   detailsText: {
     fontSize: 14,
