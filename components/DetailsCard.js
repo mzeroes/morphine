@@ -1,27 +1,25 @@
-import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { colors } from '../config'
+import React from "react";
+import { StyleSheet, View, Text, Image } from "react-native";
+import { colors } from "../config";
 
-export default DetailsCard = ( details ) => {
-  return (
-    <View style={styles.titleContainer}>
-      <View style={styles.titleIconContainer}>
-        <Image source={details.image} />
-      </View>
-      <View style={styles.titleSubContainer}>
-        <Text style={styles.titleHeader} numberOfLines={1}>
-          {details.title}
-        </Text>
-        <Text style={styles.descriptionText} >
-          {details.description}
-        </Text>
-        <Text style={styles.detailsText}>
-          {details.details}
-        </Text>
-      </View>
+const DetailsCard = details => (
+  <View style={styles.titleContainer}>
+    <View style={styles.titleIconContainer}>
+      <Image source={details.image} />
     </View>
-  );
-};
+    <View style={styles.titleSubContainer}>
+      <Text style={styles.titleHeader} numberOfLines={1}>
+        {details.title}
+      </Text>
+      <Text style={styles.descriptionText}>
+        {details.description}
+      </Text>
+      <Text style={styles.detailsText}>
+        {details.details}
+      </Text>
+    </View>
+  </View>
+);
 
 const styles = StyleSheet.create({
   titleContainer: {
@@ -57,3 +55,5 @@ const styles = StyleSheet.create({
     color: colors.dark
   },
 });
+
+export default DetailsCard;

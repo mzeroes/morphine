@@ -1,15 +1,15 @@
 import { Platform, StyleSheet } from "react-native";
 import { colors } from "../config";
-import { constants } from "../constants"
+import { constants } from ".";
 /**
  * My jss naming convention
  * ---
- * // TODO: document the convention 
- * 
- * 
+ * // TODO: document the convention
+ *
+ *
  */
 export const baseStyles = StyleSheet.create({
-  rootContainer:{
+  rootContainer: {
     backgroundColor: colors.background,
     paddingTop: constants.statusbarMargin,
   },
@@ -131,3 +131,5 @@ export const baseStyles = StyleSheet.create({
     marginTop: 1
   }
 });
+
+export default baseStyles;

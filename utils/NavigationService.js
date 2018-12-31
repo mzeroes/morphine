@@ -1,25 +1,24 @@
 // NavigationService.js
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions } from "react-navigation";
 
-let _navigator;
-
+let logoutnavigator;
 function setTopLevelNavigator(navigatorRef) {
-    _navigator = navigatorRef;
+  logoutnavigator = navigatorRef;
 }
 
 function navigate(routeName, params) {
-    console.log("In navigate")
-    _navigator.dispatch(
-        NavigationActions.navigate({
-            routeName,
-            params,
-        })
-    );
+  console.log("In navigate");
+  logoutnavigator.dispatch(
+    NavigationActions.navigate({
+      routeName,
+      params,
+    })
+  );
 }
 
 // add other navigation functions that you need and export them
 
 export default {
-    navigate,
-    setTopLevelNavigator,
+  navigate,
+  setTopLevelNavigator,
 };

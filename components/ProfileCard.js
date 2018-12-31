@@ -1,7 +1,6 @@
 import React from "react";
 import {
   SectionList,
-  ScrollView,
   StyleSheet,
   Text,
   Image,
@@ -10,29 +9,54 @@ import {
 
 import { colors } from "../config";
 
-const SectionHeader = ({ title }) => {
-  if (true) return <View />
-  return (
-    <View style={styles.sectionHeaderContainer}>
-      <Text style={styles.sectionHeaderText}>{title}</Text>
-    </View>
-  );
-};
+const SectionHeader = ({ title }) => <View />;
+// return (
+//   <View style={styles.sectionHeaderContainer}>
+//     <Text style={styles.sectionHeaderText}>{title}</Text>
+//   </View>
+// );
 
-const SectionContent = props => {
-  return <View style={styles.sectionContentContainer}>{props.children}</View>;
-};
+const SectionContent = props => (
+  <View style={styles.sectionContentContainer}>{props.children}</View>
+);
 
 export default class ProfileView extends React.Component {
+  renderSectionHeader = ({ section }) => <SectionHeader title={section.title} />;
+
+  renderItem = ({ item }) => (
+    <SectionContent>
+      {
+        item.key === "id"
+          ? (
+            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+              <Text style={{ alignSelf: "flex-start" }}>
+                {item.value}
+              </Text>
+              <Image
+                style={styles.profileImage}
+                source={{ uri: item.imageValue, height: 50, width: 50 }}
+              />
+            </View>
+          )
+          : (
+            <Text style={styles.sectionContentText}>
+              {item.value}
+            </Text>
+          )
+      }
+    </SectionContent>
+  )
+
   // let props contains this.props.profileDetails
   render() {
     const sections = [
       {
         data: [{
-          key: "id", 
+          key: "id",
           value: this.props.profileDetails.id,
           imageValue: this.props.profileDetails.image
-        }], title: "Id"
+        }],
+        title: "Id"
       },
       { data: [{ key: "name", value: this.props.profileDetails.name }], title: "Name" },
       { data: [{ key: "email", value: this.props.profileDetails.email }], title: "Email" }
@@ -48,38 +72,11 @@ export default class ProfileView extends React.Component {
       />
     );
   }
-  renderSectionHeader = ({ section }) => {
-    return <SectionHeader title={section.title} />;
-  };
-  renderItem = ({ item }) => {
-    return (
-      <SectionContent >
-        {
-          item.key === 'id'
-            ? (
-              <View style={{ flexDirection: "row", justifyContent:"space-between"}} >
-                <Text style={{alignSelf: "flex-start"}}>
-                  {item.value}
-                </Text>
-                <Image style={styles.profileImage}
-                 source={{ uri: item.imageValue, height: 50, width: 50 }} />
-              </View>
-            )
-            : (
-              <Text style={styles.sectionContentText}>
-                {item.value}
-              </Text>
-            )
-        }
-      </SectionContent>
-    );
-  }
 }
 
 const styles = StyleSheet.create({
   container: {
     alignContent: "center",
-    padding: 6,
     borderWidth: 2,
     borderRadius: 12,
     borderColor: colors.grey,

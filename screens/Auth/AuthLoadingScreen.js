@@ -7,7 +7,7 @@ import {
   Text
 } from "react-native";
 
-import {colors} from "../../config";
+import { colors } from "../../config";
 import { loginUser } from "../../config/api";
 
 export default class AuthLoadingScreen extends React.Component {
@@ -15,10 +15,11 @@ export default class AuthLoadingScreen extends React.Component {
     super(props);
     this.bootstrapAsync();
   }
+
   state = { validToken: false };
 
-  validateTokenAsync = async token => {
-    let res = await loginUser(token);
+  validateTokenAsync = async (token) => {
+    const res = await loginUser(token);
     console.log(res);
     if (res.ok) {
       this.setState({ validToken: true });
@@ -29,9 +30,8 @@ export default class AuthLoadingScreen extends React.Component {
 
   bootstrapAsync = async () => {
     const userToken = await AsyncStorage.getItem("userToken");
-    console.log("UserToken : " + userToken);
-    if (userToken)
-      await this.validateTokenAsync(userToken).catch(err => console.warn(err));
+    console.log(`UserToken : ${userToken}`);
+    if (userToken) await this.validateTokenAsync(userToken).catch(err => console.warn(err));
     this.props.navigation.navigate(this.state.validToken ? "App" : "Auth");
   };
 
@@ -47,7 +47,7 @@ export default class AuthLoadingScreen extends React.Component {
       >
         <StatusBar backgroundColor={colors.statusbar} barStyle="dark-content" />
         <Text style={{ alignSelf: "center", margin: 20 }}>Loading</Text>
-        <ActivityIndicator size={"large"} />
+        <ActivityIndicator size="large" />
       </View>
     );
   }

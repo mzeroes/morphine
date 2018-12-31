@@ -1,8 +1,9 @@
-import React from 'react';
-import { Icon } from 'expo';
+import React from "react";
+import { Icon } from "expo";
 
-import Colors from '../config/Colors';
+import Colors from "../config/Colors";
 
+// eslint-disable-next-line react/prefer-stateless-function
 export default class TabBarIcon extends React.Component {
   render() {
     return (

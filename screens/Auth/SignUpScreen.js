@@ -1,26 +1,26 @@
 import React from "react";
 import {
   Image,
-  Platform,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
   TextInput,
-  Button,
   AsyncStorage
 } from "react-native";
 
 import { MonoText } from "../../components/StyledText";
 import { baseStyles } from "../../constants/Styles";
+
 const styles = baseStyles;
 
 export default class SignUpScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
+
   state = { name: "", email: "", password: "", errorMessage: null };
+
   handleLogin = () => {
     // TODO: Firebase stuff...
     console.log("handleLogin");
@@ -96,8 +96,4 @@ export default class SignUpScreen extends React.Component {
       </View>
     );
   }
-
-  handleSignupPress = () => {
-    // navigate to signup form
-  };
 }

@@ -12,12 +12,13 @@ module.exports = {
         'no-console': 'off',
         'comma-dangle': 'off',
         quotes: ["error", "double"],
-        "object-curly-newline": ["error", {
-            "ObjectExpression": "always",
-            "ObjectPattern": { "multiline": true },
-            "ImportDeclaration": "never",
-            "ExportDeclaration": { "multiline": true, "minProperties": 3 }
-        }],
+        // "object-curly-newline": ["error", {
+        //     "ObjectExpression": "always",
+        //     "ObjectPattern": { "multiline": true },
+        //     "ImportDeclaration": "never",
+        //     "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+        // }],
+        'object-curly-newline': 'off',
         'global-require': 'off',
         'no-unused-vars': 'off'
     },

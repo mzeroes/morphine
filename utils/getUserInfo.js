@@ -1,4 +1,4 @@
-import { Constants } from 'expo';
+import { Constants } from "expo";
 
 function getUserInfo() {
   const { deviceId, deviceName, platform } = Constants;

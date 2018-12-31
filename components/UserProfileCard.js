@@ -5,7 +5,6 @@ import { colors } from "../config";
 const image = require("../assets/images/icon.png");
 
 const UserProfileCard = (props) => {
-  console.log("props are", props.user);
   const user = {
     id: props.user.id,
     name: props.user.name,
@@ -19,31 +18,42 @@ const UserProfileCard = (props) => {
 
       <View style={{
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
       }}
       >
         <Text style={{
-          alignSelf: "flex-start"
+          alignSelf: "flex-start",
         }}
         >
           {user.name}
         </Text>
         <View style={{
-          alignSelf: "flex-end"
+          alignSelf: "flex-end",
+          borderRadius: 50,
+          borderWidth: 2,
+          borderColor: colors.grey
         }}
         >
           <Image
             source={user.image}
             style={{
               width: 40,
-              height: 40
+              height: 40,
             }}
           />
 
         </View>
       </View>
-      <Text>
+      <Text style={{
+        fontSize: 20
+      }}
+      >
         {user.id}
+      </Text>
+      <Text style={{
+        fontSize: 16
+      }}
+      >
         {user.details}
       </Text>
 
@@ -57,8 +67,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 12,
     borderColor: colors.grey,
-    padding: 12,
-    marginBottom: 40
+    padding: 26,
+    marginBottom: 28
   },
 });
 

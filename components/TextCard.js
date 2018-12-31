@@ -1,16 +1,14 @@
-import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { colors } from '../config'
+import React from "react";
+import { StyleSheet, View, Text, Image } from "react-native";
+import { colors } from "../config";
 
-export default TextCard = (props) => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>
-        {props.text}
-      </Text>
-    </View>
-  );
-};
+const TextCard = props => (
+  <View style={styles.container}>
+    <Text style={styles.text}>
+      {props.text}
+    </Text>
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -27,3 +25,4 @@ const styles = StyleSheet.create({
     color: colors.primary
   }
 });
+export default TextCard;

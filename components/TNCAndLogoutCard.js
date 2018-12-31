@@ -1,38 +1,36 @@
-import React from 'react';
+import React from "react";
 import {
   StyleSheet,
   View,
   Text,
   TouchableOpacity
-} from 'react-native';
+} from "react-native";
 
-import { colors, config } from '../config'
+import { colors, config } from "../config";
 import { handleUrl, onPressLogoutAsync } from "../utils";
 
-export default TNCAndLogoutCard = () => {
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.ppContainer}
-        onPress={() => handleUrl(config.url + "/privacy")}
-      >
-        <Text>Privacy policy</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.tncContainer}
-        onPress={() => handleUrl(config.url + "/tnc")}
-      >
-        <Text>Licences & Terms of Service</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.logOutButton}
-        onPress={onPressLogoutAsync}
-      >
-        <Text>Logout</Text>
-      </TouchableOpacity>
-    </View>
-  )
-}
+const TNCAndLogoutCard = () => (
+  <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.ppContainer}
+      onPress={() => handleUrl(`${config.url}/privacy`)}
+    >
+      <Text>Privacy policy</Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      style={styles.tncContainer}
+      onPress={() => handleUrl(`${config.url}/tnc`)}
+    >
+      <Text>Licences & Terms of Service</Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      style={styles.logOutButton}
+      onPress={onPressLogoutAsync}
+    >
+      <Text>Logout</Text>
+    </TouchableOpacity>
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -65,3 +63,4 @@ const styles = StyleSheet.create({
     marginBottom: 20
   }
 });
+export default TNCAndLogoutCard;

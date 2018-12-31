@@ -1,9 +1,8 @@
+/* eslint-disable react/no-unused-state */
 import React from "react";
 import {
   Image,
-  Platform,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -14,14 +13,15 @@ import { AuthSession } from "expo";
 
 import { MonoText } from "../../components/StyledText";
 import { baseStyles } from "../../constants/Styles";
-import { login, loginUser } from "../../config/api";
-import { config } from "../../config"
-const styles = baseStyles;
+import { userDetails } from "../../config/api";
+import { config } from "../../config";
 
-const FB_APP_ID = config.FB_APP_ID;
+const styles = baseStyles;
+const { FB_APP_ID } = config;
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = { header: null };
+
   state = {
     userName: "",
     userId: "",
@@ -29,31 +29,30 @@ export default class LoginScreen extends React.Component {
     validatedUser: false,
     result: null
   };
-  LoginAsync = async token => {
+
+  LoginAsync = async (token) => {
     if (this.state.validatedUser) {
       const test = await AsyncStorage.setItem("userToken", token);
       this.props.navigation.navigate("App");
     }
-    console.log("handling login : " + this.state.errorMessage + token);
+    console.log(`handling login : ${this.state.errorMessage}${token}`);
   };
 
- 
   LoginAuthSessionAsync = async () => {
     console.log("handleLogin");
 
-    let redirectUrl = AuthSession.getRedirectUrl();
-    let result = await AuthSession.startAsync({
+    const redirectUrl = AuthSession.getRedirectUrl();
+    const result = await AuthSession.startAsync({
       authUrl:
-        `https://www.facebook.com/v2.8/dialog/oauth?response_type=token` +
-        `&client_id=${FB_APP_ID}` +
-        `&redirect_uri=${encodeURIComponent(redirectUrl)}`
+        "https://www.facebook.com/v2.8/dialog/oauth?response_type=token"
+        + `&client_id=${FB_APP_ID}`
+        + `&redirect_uri=${encodeURIComponent(redirectUrl)}`
     });
     this.setState({ result });
-    console.log(JSON.stringify(result));
-    const res = await loginUser(result.params.access_token);
+    const response = await userDetails(result.params.access_token);
     this.setState({
-      userName: res._bodyInit.name,
-      userId: res._bodyInit.id,
+      userId: response.id,
+      userName: response.name,
       validatedUser: true
     });
     await this.LoginAsync(result.params.access_token);
@@ -102,7 +101,8 @@ export default class LoginScreen extends React.Component {
                 alignSelf: "center",
                 marginTop: 20,
                 marginBottom: 20
-              }}>
+              }}
+            >
               or
             </Text>
             <TouchableOpacity
@@ -136,8 +136,4 @@ export default class LoginScreen extends React.Component {
       </View>
     );
   }
-
-  handleSignupPress = () => {
-    // navigate to signup form
-  };
 }

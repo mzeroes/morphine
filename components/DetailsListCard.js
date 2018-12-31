@@ -7,24 +7,30 @@ import {
   View,
 } from "react-native";
 
-import DetailsCard from './DetailsCard'
-import TNCAndLogoutCard from './TNCAndLogoutCard'
+import DetailsCard from "./DetailsCard";
+import TNCAndLogoutCard from "./TNCAndLogoutCard";
 
 import { colors } from "../config";
 
-const SectionHeader = ({ title }) => {
-  return (
-    <View style={styles.sectionHeaderContainer}>
-      <Text style={styles.sectionHeaderText}>{title}</Text>
-    </View>
-  );
-};
+const SectionHeader = ({ title }) => (
+  <View style={styles.sectionHeaderContainer}>
+    <Text style={styles.sectionHeaderText}>{title}</Text>
+  </View>
+);
 
-const SectionContent = props => {
-  return <View style={styles.sectionContentContainer}>{props.children}</View>;
-};
+const SectionContent = props => (
+  <View style={styles.sectionContentContainer}>{props.children}</View>
+);
 
 export default class DetailsList extends React.Component {
+  renderSectionHeader = ({ section }) => <SectionHeader title={section.title} />;
+
+  renderItem = ({ item }) => (
+    <SectionContent>
+      <Text style={styles.sectionContentText}>{item.value}</Text>
+    </SectionContent>
+  )
+
   // let props contains this.props.profileDetails
   render() {
     const sections = [
@@ -32,12 +38,12 @@ export default class DetailsList extends React.Component {
       { data: [{ value: this.props.profileDetails.email }], title: "Contact email" },
     ];
     return (
-      <ScrollView style={styles.container} >
+      <ScrollView style={styles.container}>
         <SectionList
           style={styles.container}
           renderItem={this.renderItem}
           renderSectionHeader={this.renderSectionHeader}
-          stickySectionHeadersEnabled={true}
+          stickySectionHeadersEnabled
           keyExtractor={(item, index) => index}
           ListHeaderComponent={DetailsCard(this.props.details)}
           sections={sections}
@@ -46,18 +52,8 @@ export default class DetailsList extends React.Component {
       </ScrollView>
     );
   }
-
-  renderSectionHeader = ({ section }) => {
-    return <SectionHeader title={section.title} />;
-  };
-  renderItem = ({ item }) => {
-    return (
-      <SectionContent>
-        <Text style={styles.sectionContentText}>{item.value}</Text>
-      </SectionContent>
-    );
-  }
 }
+
 // TODO: Refactor this to baseStyles
 const styles = StyleSheet.create({
   container: {
