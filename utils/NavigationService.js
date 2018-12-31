@@ -7,7 +7,7 @@ function setTopLevelNavigator(navigatorRef) {
 }
 
 function navigate(routeName, params) {
-  console.log("In navigate");
+  console.log("[INFO**] In NavigationService.js");
   logoutnavigator.dispatch(
     NavigationActions.navigate({
       routeName,

@@ -3,7 +3,7 @@ import { FlatList, View } from "react-native";
 import { baseStyles } from "../../constants/Styles";
 import ProfileView from "../../components/ProfileCard";
 
-export default class LinksScreen extends React.Component {
+export default class ExploreScreen extends React.Component {
   static navigationOptions = {
     header: null
   };

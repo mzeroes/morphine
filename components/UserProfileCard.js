@@ -2,7 +2,7 @@ import React from "react";
 import { Image, ScrollView, Text, View, StyleSheet } from "react-native";
 import { colors } from "../config";
 
-const image = require("../assets/images/icon.png");
+const image = require("../assets/images/profile-1.png");
 
 const UserProfileCard = (props) => {
   const user = {
@@ -14,50 +14,39 @@ const UserProfileCard = (props) => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-
+    <View style={styles.container}>
       <View style={{
         flexDirection: "row",
         justifyContent: "space-between",
       }}
       >
-        <Text style={{
-          alignSelf: "flex-start",
-        }}
-        >
+        <Text style={{ alignSelf: "flex-start" }}>
           {user.name}
         </Text>
         <View style={{
           alignSelf: "flex-end",
           borderRadius: 50,
-          borderWidth: 2,
+          borderWidth: 1,
           borderColor: colors.grey
         }}
         >
           <Image
             source={user.image}
             style={{
-              width: 40,
-              height: 40,
+              width: 50,
+              height: 50,
+              borderRadius: 50
             }}
           />
-
         </View>
       </View>
-      <Text style={{
-        fontSize: 20
-      }}
-      >
+      <Text style={{ fontSize: 16 }}>
         {user.id}
       </Text>
-      <Text style={{
-        fontSize: 16
-      }}
-      >
+      <Text style={{ fontSize: 14 , marginTop: 16 }}>
         {user.details}
       </Text>
-
-    </ScrollView>
+    </View>
   );
 };
 
@@ -68,8 +57,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderColor: colors.grey,
     padding: 26,
-    marginBottom: 28
-  },
+    margin: 12,
+    marginTop: 20,
+  }
 });
 
 export default UserProfileCard;

@@ -1,13 +1,7 @@
 import { Platform, StyleSheet } from "react-native";
 import { colors } from "../config";
 import { constants } from ".";
-/**
- * My jss naming convention
- * ---
- * // TODO: document the convention
- *
- *
- */
+
 export const baseStyles = StyleSheet.create({
   rootContainer: {
     backgroundColor: colors.background,
@@ -73,23 +67,23 @@ export const baseStyles = StyleSheet.create({
   },
   infoContainer: {
     position: "absolute",
+    backgroundColor: colors.background,
     bottom: 0,
     left: 0,
     right: 0,
     ...Platform.select({
       ios: {
-        shadowColor: "black",
+        shadowColor: colors.dark,
         shadowOffset: { height: -3 },
         shadowOpacity: 0.1,
-        shadowRadius: 3
+        shadowRadius: 1
       },
       android: {
-        elevation: 20
+        elevation: 10
       }
     }),
     alignItems: "center",
-    backgroundColor: colors.background,
-    paddingVertical: 20
+    paddingVertical: 10
   },
   tabBarInfoText: {
     fontSize: 17,
@@ -103,8 +97,12 @@ export const baseStyles = StyleSheet.create({
     marginTop: 15,
     alignItems: "center"
   },
-  helpLink: {
-    paddingVertical: 15
+  linkLoginSignup: {
+    color: colors.white,
+    alignItems: "center",
+    backgroundColor: colors.grey,
+    padding: 12,
+    width: "100%",
   },
   linkText: {
     fontSize: 14,
@@ -120,11 +118,11 @@ export const baseStyles = StyleSheet.create({
     marginRight: 9
   },
   option: {
-    backgroundColor: "#fdfdfd",
+    backgroundColor: colors.grey,
     paddingHorizontal: 15,
     paddingVertical: 15,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "#EDEDED"
+    borderBottomColor: colors.black
   },
   optionText: {
     fontSize: 15,

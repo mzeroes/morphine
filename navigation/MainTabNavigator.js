@@ -7,9 +7,11 @@ import {
 
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/App/HomeScreen";
-import LinksScreen from "../screens/App/LinksScreen";
+import ExploreScreen from "../screens/App/ExploreScreen";
 import SettingsScreen from "../screens/App/SettingsScreen";
 import { colors } from "../config";
+import ChatsScreen from "../screens/App/ChatsScreen";
+import PostsScreen from "../screens/App/PostsScreen";
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen
@@ -22,23 +24,52 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === "ios"
-          ? `ios-home${focused ? "" : "-outline"}`
-          : "md-home"
+          ? `ios-pin${focused ? "" : "-outline"}`
+          : "md-pin"
       }
     />
   )
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen
+const ExploreStack = createStackNavigator({
+  Links: ExploreScreen
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: "Status",
+ExploreStack.navigationOptions = {
+  tabBarLabel: "Explore",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === "ios" ? "ios-apps" : "ios-apps"}
+      name={Platform.OS === "ios" ? "ios-search" : "md-search"}
+    />
+  )
+};
+
+const PostsStack = createStackNavigator({
+  Posts: PostsScreen
+});
+
+PostsStack.navigationOptions = {
+  tabBarLabel: "Post",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === "ios" ? "ios-albums" : "ios-albums"}
+    />
+  )
+};
+
+
+const ChatStack = createStackNavigator({
+  Carts: ChatsScreen
+});
+
+ChatStack.navigationOptions = {
+  tabBarLabel: "Chat",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === "ios" ? "ios-chatbubbles" : "md-chatbubbles"}
     />
   )
 };
@@ -49,12 +80,12 @@ const SettingsStack = createStackNavigator({
 
 SettingsStack.navigationOptions = {
 
-  tabBarLabel: "Profile",
+  tabBarLabel: "Account",
 
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === "ios" ? "ios-settings" : "md-settings"}
+      name={Platform.OS === "ios" ? "ios-person" : "md-person"}
     />
   )
 };
@@ -62,14 +93,16 @@ SettingsStack.navigationOptions = {
 export default createBottomTabNavigator(
   {
     HomeStack,
-    LinksStack,
+    ExploreStack,
+    PostsStack,
+    ChatStack,
     SettingsStack
   },
   {
     tabBarOptions: {
       activeTintColor: colors.tintColor,
       labelStyle: {
-        fontSize: 12
+        fontSize: 10
       },
       style: {
         backgroundColor: colors.background

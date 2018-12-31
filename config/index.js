@@ -8,6 +8,8 @@ const tintColor = "#6f8ca9";
 
 export const colors = {
   tintColor,
+  tabIconSelected: tintColor,
+  tabIconDefault: tintColor,
   background: "#F2F2F2",
   // make sure to change the app.js statusbar color for android
   statusbar: "#E2E2E2",

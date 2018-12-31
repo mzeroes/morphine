@@ -1,18 +1,15 @@
 import React from "react";
 import { Icon } from "expo";
 
-import Colors from "../config/Colors";
+import { colors } from "../config";
 
-// eslint-disable-next-line react/prefer-stateless-function
-export default class TabBarIcon extends React.Component {
-  render() {
-    return (
-      <Icon.Ionicons
-        name={this.props.name}
-        size={26}
-        style={{ marginBottom: -3 }}
-        color={this.props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-      />
-    );
-  }
-}
+const TabBarIcon = props => (
+  <Icon.Ionicons
+    name={props.name}
+    size={28}
+    style={{ marginBottom: -4 }}
+    color={props.focused ? colors.tabIconSelected : colors.tabIconDefault}
+  />
+);
+
+export default TabBarIcon;

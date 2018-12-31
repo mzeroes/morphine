@@ -38,7 +38,7 @@ export default class DetailsList extends React.Component {
       { data: [{ value: this.props.profileDetails.email }], title: "Contact email" },
     ];
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <SectionList
           style={styles.container}
           renderItem={this.renderItem}
@@ -49,7 +49,7 @@ export default class DetailsList extends React.Component {
           sections={sections}
         />
         <TNCAndLogoutCard />
-      </ScrollView>
+      </View>
     );
   }
 }

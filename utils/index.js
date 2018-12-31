@@ -11,6 +11,6 @@ export const onPressLogoutAsync = async () => {
   await AsyncStorage.setItem("userToken", "");
   // add some latency
   setTimeout(() => { }, 4000); // add some function to confirm
-  console.log("logging out....");
+  console.log("[INFO**] logging out ");
   NavigationService.navigate("AuthLoading");
 };

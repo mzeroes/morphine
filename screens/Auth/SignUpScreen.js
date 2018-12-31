@@ -21,11 +21,6 @@ export default class SignUpScreen extends React.Component {
 
   state = { name: "", email: "", password: "", errorMessage: null };
 
-  handleLogin = () => {
-    // TODO: Firebase stuff...
-    console.log("handleLogin");
-  };
-
   SignupAsync = async () => {
     // get a token from backend
     await AsyncStorage.setItem("userToken", "TOKEN3136");
@@ -84,15 +79,12 @@ export default class SignUpScreen extends React.Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
-
-        <View style={styles.infoContainer}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("SignIn")}
-            style={styles.helpLink}
-          >
-            <Text style={styles.linkText}>Already signedup? Login here</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("SignIn")}
+          style={styles.linkLoginSignup}
+        >
+          <Text style={styles.linkText}>Already registered? SignIn instead</Text>
+        </TouchableOpacity>
       </View>
     );
   }

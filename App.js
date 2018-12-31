@@ -15,7 +15,6 @@ export default class App extends React.Component {
     isLoadingComplete: false,
   };
 
-
   loadResourcesAsync = async () => Promise.all([
     Asset.loadAsync([
       require("./assets/images/logo-dev.png"),
