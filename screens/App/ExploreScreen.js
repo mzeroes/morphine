@@ -21,6 +21,7 @@ export default class ExploreScreen extends React.Component {
   keyExtractor = (item, index) => item.id;
 
   usersAsync = async () => {
+    // sample data
     const response = await fetch("https://randomuser.me/api/?page=3&results=10&seed=abcd");
     const { results } = await response.json();
 

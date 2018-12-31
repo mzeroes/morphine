@@ -31,7 +31,7 @@ export const baseStyles = StyleSheet.create({
   touchableButton: {
     alignItems: "center",
     backgroundColor: colors.primary,
-    borderRadius: 20,
+    borderRadius: 12,
     padding: 10,
     marginLeft: 40,
     width: "70%",
