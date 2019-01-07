@@ -1,6 +1,6 @@
-import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
-import { colors } from "../config";
+import React from 'react';
+import { StyleSheet, View, Text, Image } from 'react-native';
+import { Colors } from '../constants';
 
 const DetailsCard = details => (
   <View style={styles.titleContainer}>
@@ -25,34 +25,34 @@ const styles = StyleSheet.create({
   titleContainer: {
     borderWidth: 2,
     borderRadius: 12,
-    borderColor: colors.grey,
+    borderColor: Colors.grey,
     padding: 12,
     marginBottom: 40
   },
   titleSubContainer: {
     flex: 1,
-    alignContent: "center",
+    alignContent: 'center',
   },
   titleIconContainer: {
-    alignSelf: "center",
+    alignSelf: 'center',
     marginRight: 25,
     paddingTop: 2
   },
   titleHeader: {
     margin: 20,
-    alignSelf: "center",
+    alignSelf: 'center',
     fontSize: 28,
-    color: colors.primary
+    color: Colors.primary
   },
   descriptionText: {
     fontSize: 14,
     marginTop: 6,
-    color: colors.secondary
+    color: Colors.secondary
   },
   detailsText: {
     fontSize: 14,
     marginTop: 6,
-    color: colors.dark
+    color: Colors.dark
   },
 });
 

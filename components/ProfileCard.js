@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 import {
   SectionList,
   StyleSheet,
   Text,
   Image,
   View,
-} from "react-native";
+} from 'react-native';
 
-import { colors } from "../config";
+import { Colors } from '../constants';
 
 const SectionHeader = ({ title }) => <View />;
 // return (
@@ -26,10 +26,10 @@ export default class ProfileView extends React.Component {
   renderItem = ({ item }) => (
     <SectionContent>
       {
-        item.key === "id"
+        item.key === 'id'
           ? (
-            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-              <Text style={{ alignSelf: "flex-start" }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Text style={{ alignSelf: 'flex-start' }}>
                 {item.value}
               </Text>
               <Image
@@ -52,14 +52,14 @@ export default class ProfileView extends React.Component {
     const sections = [
       {
         data: [{
-          key: "id",
+          key: 'id',
           value: this.props.profileDetails.id,
           imageValue: this.props.profileDetails.image
         }],
-        title: "Id"
+        title: 'Id'
       },
-      { data: [{ key: "name", value: this.props.profileDetails.name }], title: "Name" },
-      { data: [{ key: "email", value: this.props.profileDetails.email }], title: "Email" }
+      { data: [{ key: 'name', value: this.props.profileDetails.name }], title: 'Name' },
+      { data: [{ key: 'email', value: this.props.profileDetails.email }], title: 'Email' }
     ];
 
     return (
@@ -76,22 +76,22 @@ export default class ProfileView extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignContent: "center",
+    alignContent: 'center',
     borderWidth: 2,
     borderRadius: 12,
-    borderColor: colors.grey,
+    borderColor: Colors.grey,
     margin: 8,
     padding: 8
   },
   sectionHeaderContainer: {
-    backgroundColor: colors.grey,
+    backgroundColor: Colors.grey,
     paddingVertical: 8,
     paddingHorizontal: 15,
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: colors.grey
+    borderColor: Colors.grey
   },
   profileImage: {
-    alignSelf: "flex-end",
+    alignSelf: 'flex-end',
     borderRadius: 50
   },
   sectionHeaderText: {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   sectionContentText: {
-    color: colors.secondary,
+    color: Colors.secondary,
     fontSize: 14
   }
 });

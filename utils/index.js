@@ -1,16 +1,23 @@
 // common utils
-import { WebBrowser } from "expo";
-import { AsyncStorage } from "react-native";
-import NavigationService from "./NavigationService";
+import { WebBrowser } from 'expo';
+import { signOutUser } from 'auth/authFirebase';
+import store from 'app/redux/store';
+import { updateUser } from 'app/redux/action';
+import NavigationService from './NavigationService';
+import { resetTokenInStore } from '../api/user';
 
 export const handleUrl = (url) => {
   WebBrowser.openBrowserAsync(url);
 };
 
 export const onPressLogoutAsync = async () => {
-  await AsyncStorage.setItem("userToken", "");
-  // add some latency
-  setTimeout(() => { }, 4000); // add some function to confirm
-  console.log("[INFO**] logging out ");
-  NavigationService.navigate("AuthLoading");
+  try {
+    await resetTokenInStore();
+    signOutUser();
+    store.dispatch(updateUser({}));
+
+    NavigationService.navigate('Loading');
+  } catch (err) {
+    console.log(err);
+  }
 };

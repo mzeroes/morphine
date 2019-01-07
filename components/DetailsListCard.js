@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 import {
   SectionList,
   ScrollView,
   StyleSheet,
   Text,
   View,
-} from "react-native";
+} from 'react-native';
 
-import DetailsCard from "./DetailsCard";
-import TNCAndLogoutCard from "./TNCAndLogoutCard";
+import DetailsCard from './DetailsCard';
+import TNCAndLogoutCard from './TNCAndLogoutCard';
 
-import { colors } from "../config";
+import { Colors } from '../constants';
 
 const SectionHeader = ({ title }) => (
   <View style={styles.sectionHeaderContainer}>
@@ -35,7 +35,7 @@ export default class DetailsList extends React.Component {
   render() {
     const sections = [
       // { data: [{ value: this.props.profileDetails.name }], title: "Name" },
-      { data: [{ value: this.props.profileDetails.email }], title: "Contact email" },
+      { data: [{ value: this.props.profileDetails.email }], title: 'Contact email' },
     ];
     return (
       <View style={styles.container}>
@@ -54,19 +54,19 @@ export default class DetailsList extends React.Component {
   }
 }
 
-// TODO: Refactor this to baseStyles
+// TODO: Refactor this to styles
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.background,
-    alignContent: "center",
+    backgroundColor: Colors.background,
+    alignContent: 'center',
     padding: 6
   },
   sectionHeaderContainer: {
-    backgroundColor: colors.grey,
+    backgroundColor: Colors.grey,
     paddingVertical: 8,
     paddingHorizontal: 15,
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: colors.grey
+    borderColor: Colors.grey
   },
 
   sectionHeaderText: {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15
   },
   sectionContentText: {
-    color: colors.secondary,
+    color: Colors.secondary,
     fontSize: 14
   }
 });

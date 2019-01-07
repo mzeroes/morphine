@@ -1,14 +1,15 @@
 // NavigationService.js
-import { NavigationActions } from "react-navigation";
+// this provides navigator to authScreen directly
+import { NavigationActions, DrawerActions } from 'react-navigation';
 
-let logoutnavigator;
+let navigator;
+// this saves the ref to the top App level navigator
 function setTopLevelNavigator(navigatorRef) {
-  logoutnavigator = navigatorRef;
+  navigator = navigatorRef;
 }
 
 function navigate(routeName, params) {
-  console.log("[INFO**] In NavigationService.js");
-  logoutnavigator.dispatch(
+  navigator.dispatch(
     NavigationActions.navigate({
       routeName,
       params,
@@ -16,9 +17,12 @@ function navigate(routeName, params) {
   );
 }
 
-// add other navigation functions that you need and export them
+function toggleDrawer() {
+  navigator.dispatch(DrawerActions.toggleDrawer());
+}
 
 export default {
-  navigate,
   setTopLevelNavigator,
+  navigate,
+  toggleDrawer
 };

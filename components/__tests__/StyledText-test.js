@@ -1,10 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import "react-native";
-import React from "react";
-import renderer from "react-test-renderer";
-import { MonoText } from "../StyledText";
+import 'react-native';
+import React from 'react';
+import renderer from 'react-test-renderer';
+import { MonoText } from '../StyledText';
 
-it("renders correctly", () => {
+it('renders correctly', () => {
   const tree = renderer.create(<MonoText>Snapshot test!</MonoText>).toJSON();
 
   expect(tree).toMatchSnapshot();

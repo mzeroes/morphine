@@ -1,11 +1,11 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "name": "auth",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "lint": "eslint *.js",
     "test": "node ./node_modules/jest/bin/jest.js --watchAll"
   },
   "jest": {
@@ -13,22 +13,35 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
-    "expo": "^31.0.2",
+    "expo": "^32.0.0",
+    "expokit": "32.0.6",
+    "firebase": "^5.8.2",
+    "formik": "^1.4.3",
+    "prop-types": "^15.7.2",
     "react": "16.5.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
-    "react-navigation": "^2.18.2",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-gifted-chat": "^0.7.2",
+    "react-native-keyboard-spacer": "^0.4.1",
+    "react-native-onboarding-swiper": "^1.0.1",
+    "react-native-paper": "^2.11.0",
+    "react-native-ui-kitten": "^3.1.2",
+    "react-navigation": "^3.0.9",
     "react-redux": "^6.0.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "yup": "^0.26.10"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
+    "babel-plugin-module-resolver": "^3.2.0",
     "babel-preset-expo": "^5.0.0",
-    "eslint": "^5.11.1",
+    "eslint": "^5.13.0",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.12.0",
-    "jest-expo": "^31.0.0"
+    "eslint-import-resolver-babel-module": "^5.0.1",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "jest-expo": "^32.0.0",
+    "react-test-renderer": "^16.8.1"
   },
   "private": true
 }

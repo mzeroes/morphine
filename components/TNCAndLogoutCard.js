@@ -1,25 +1,25 @@
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   View,
   Text,
   TouchableOpacity
-} from "react-native";
-
-import { colors, config } from "../config";
-import { handleUrl, onPressLogoutAsync } from "../utils";
+} from 'react-native';
+import { APP_URL } from '../config';
+import { Colors } from '../constants';
+import { handleUrl, onPressLogoutAsync } from '../utils';
 
 const TNCAndLogoutCard = () => (
   <View style={styles.container}>
     <TouchableOpacity
       style={styles.ppContainer}
-      onPress={() => handleUrl(`${config.url}/privacy`)}
+      onPress={() => handleUrl(`${APP_URL}/privacy`)}
     >
       <Text>Privacy policy</Text>
     </TouchableOpacity>
     <TouchableOpacity
       style={styles.tncContainer}
-      onPress={() => handleUrl(`${config.url}/tnc`)}
+      onPress={() => handleUrl(`${APP_URL}/tnc`)}
     >
       <Text>Licences & Terms of Service</Text>
     </TouchableOpacity>
@@ -34,29 +34,29 @@ const TNCAndLogoutCard = () => (
 
 const styles = StyleSheet.create({
   container: {
-    alignContent: "center",
+    alignContent: 'center',
     borderWidth: 2,
     borderRadius: 8,
-    borderColor: colors.grey,
+    borderColor: Colors.grey,
     padding: 24,
     margin: 8,
     marginBottom: 40
   },
   ppContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     borderRadius: 10,
     padding: 10,
     marginTop: 20,
   },
   tncContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     borderRadius: 10,
     padding: 10,
     marginTop: 20,
   },
   logOutButton: {
-    alignItems: "center",
-    backgroundColor: colors.red,
+    alignItems: 'center',
+    backgroundColor: Colors.red,
     borderRadius: 10,
     padding: 10,
     marginTop: 20,

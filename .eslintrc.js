@@ -11,7 +11,11 @@ module.exports = {
         'react/destructuring-assignment': 'off',
         'no-console': 'off',
         'comma-dangle': 'off',
-        quotes: ["error", "double"],
+        'react/sort-comp': 'off',
+        'no-underscore-dangle': 'off',
+        'react/prefer-stateless-function': 'off',
+        'no-else-return': 'off',
+        'quotes': ['error', 'single'],
         // "object-curly-newline": ["error", {
         //     "ObjectExpression": "always",
         //     "ObjectPattern": { "multiline": true },
@@ -20,10 +24,15 @@ module.exports = {
         // }],
         'object-curly-newline': 'off',
         'global-require': 'off',
-        'no-unused-vars': 'off'
+        'no-unused-vars': 'off',
+        'import/prefer-default-export': 'off'
+    },
+    "settings": {
+        "import/resolver": {
+            "babel-module": {}
+        }
     },
     'globals': {
         "fetch": false
     }
-
 }

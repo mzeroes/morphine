@@ -1,9 +1,9 @@
-import { Constants } from "expo";
+import { Constants } from 'expo';
+import { Colors } from './Colors';
 
-export const constants = {
-  statusbarMargin: Constants.statusBarHeight,
-};
+const statusbarMargin = Constants.statusBarHeight;
 
-export const deviceInfo = {
-  statusbarMargin: Constants.statusBarHeight,
+export {
+  Colors,
+  statusbarMargin
 };

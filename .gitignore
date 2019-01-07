@@ -1,8 +1,8 @@
 node_modules/**/*
 .expo/*
+.expo-source/*
 npm-debug.*
 *.jks
 *.p12
 *.key
 *.mobileprovision
-config/keys.js

@@ -1,6 +1,6 @@
-import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
-import { colors } from "../config";
+import React from 'react';
+import { StyleSheet, View, Text, Image } from 'react-native';
+import { Colors } from '../constants';
 
 const TextCard = props => (
   <View style={styles.container}>
@@ -14,15 +14,15 @@ const styles = StyleSheet.create({
   container: {
     borderWidth: 2,
     borderRadius: 12,
-    borderColor: colors.grey,
+    borderColor: Colors.grey,
     margin: 8,
     marginTop: 0
   },
   text: {
     margin: 12,
-    alignSelf: "center",
+    alignSelf: 'center',
     fontSize: 18,
-    color: colors.primary
+    color: Colors.primary
   }
 });
 export default TextCard;

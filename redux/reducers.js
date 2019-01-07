@@ -1,5 +1,5 @@
-import { combineReducers } from "redux";
-import { UPDATE_CONTACT, UPDATE_USER } from "./action";
+import { combineReducers } from 'redux';
+import { UPDATE_CONTACT, UPDATE_USER } from './action';
 
 const contactsReducer = (state = [], action) => {
   if (action.type === UPDATE_CONTACT) return [...state, action.payload];

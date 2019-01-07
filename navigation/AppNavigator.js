@@ -1,23 +1,66 @@
-import { createSwitchNavigator, createStackNavigator } from "react-navigation";
+import React from 'react';
+import {
+  createAppContainer,
+  createSwitchNavigator,
+  createStackNavigator
+} from 'react-navigation';
 
-import MainTabNavigator from "./MainTabNavigator";
-import LoginScreen from "../screens/Auth/LoginScreen";
-import SignUpScreen from "../screens/Auth/SignUpScreen";
+import { TouchableOpacity } from 'react-native';
 
-import AuthLoadingScreen from "../screens/Auth/AuthLoadingScreen";
+import Icon from 'expo';
+import MainDrawNavigator from './MainDrawNavigator';
+import AuthLoadingScreen from '../screens/Auth/AuthLoadingScreen';
+import LogInScreen from '../screens/Auth/LogInScreen';
+import SignUpScreen from '../screens/Auth/SignUpScreen';
+import OnboardingScreen from '../screens/Auth/OnBoardingScreen';
+import SignInProvidersScreen from '../screens/Auth/SignInProvidersScreen';
+import { Colors } from '../constants';
+import styles from '../styles';
 
-const AuthStack = createStackNavigator({
-  SignIn: LoginScreen,
-  SignUp: SignUpScreen
-});
 
-export default createSwitchNavigator(
+const AuthStack = createStackNavigator(
   {
-    AuthLoading: AuthLoadingScreen,
-    App: MainTabNavigator,
-    Auth: AuthStack
+    OnBoard: OnboardingScreen,
+    Login: LogInScreen,
+    SignUp: SignUpScreen,
+    Providers: SignInProvidersScreen
   },
   {
-    initialRouteName: "AuthLoading"
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: styles.headerStyle,
+      headerTintColor: Colors.tintColor,
+      headerTitleStyle: {
+        fontWeight: 'normal'
+      },
+      headerLeft: (
+        navigation.order === 0 && (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.goBack();
+            }}
+          >
+            <Icon.Ionicons
+              style={{ alignItems: 'flex-start', marginLeft: 26 }}
+              name="ios-arrow-back"
+              size={24}
+            />
+          </TouchableOpacity>
+        )
+      ),
+    }),
+    initialRouteName: 'OnBoard'
   }
 );
+
+
+const AppNav = createSwitchNavigator(
+  {
+    App: MainDrawNavigator,
+    Auth: AuthStack,
+    Loading: AuthLoadingScreen
+  },
+  {
+    initialRouteName: 'Loading'
+  }
+);
+export default createAppContainer(AppNav);

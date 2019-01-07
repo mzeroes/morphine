@@ -1,91 +1,91 @@
-import React from "react";
-import { Platform } from "react-native";
+import React from 'react';
+import { Platform } from 'react-native';
 import {
   createStackNavigator,
   createBottomTabNavigator
-} from "react-navigation";
+} from 'react-navigation';
 
-import TabBarIcon from "../components/TabBarIcon";
-import HomeScreen from "../screens/App/HomeScreen";
-import ExploreScreen from "../screens/App/ExploreScreen";
-import SettingsScreen from "../screens/App/SettingsScreen";
-import { colors } from "../config";
-import ChatsScreen from "../screens/App/ChatsScreen";
-import PostsScreen from "../screens/App/PostsScreen";
+import TabBarIcon from '../components/TabBarIcon';
+import HomeScreen from '../screens/Main/HomeScreen';
+import ExploreScreen from '../screens/Main/ExploreScreen';
+import SettingsScreen from '../screens/Settings/SettingsScreen';
+import { Colors } from '../constants';
+import ChatsScreen from '../screens/Main/ChatsScreen';
+import PostsScreen from '../screens/Main/PostsScreen';
 
-const HomeStack = createStackNavigator({
+export const HomeStack = createStackNavigator({
   Home: HomeScreen
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: "Home",
+  tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
-        Platform.OS === "ios"
-          ? `ios-pin${focused ? "" : "-outline"}`
-          : "md-pin"
+        Platform.OS === 'ios'
+          ? `ios-pin${focused ? '' : '-outline'}`
+          : 'md-pin'
       }
     />
   )
 };
 
-const ExploreStack = createStackNavigator({
-  Links: ExploreScreen
+export const ExploreStack = createStackNavigator({
+  Explore: ExploreScreen
 });
 
 ExploreStack.navigationOptions = {
-  tabBarLabel: "Explore",
+  tabBarLabel: 'Explore',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === "ios" ? "ios-search" : "md-search"}
+      name={Platform.OS === 'ios' ? 'ios-search' : 'md-search'}
     />
   )
 };
 
-const PostsStack = createStackNavigator({
+export const PostsStack = createStackNavigator({
   Posts: PostsScreen
 });
 
 PostsStack.navigationOptions = {
-  tabBarLabel: "Post",
+  tabBarLabel: 'Post',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === "ios" ? "ios-albums" : "ios-albums"}
+      name={Platform.OS === 'ios' ? 'ios-albums' : 'ios-albums'}
     />
   )
 };
 
 
-const ChatStack = createStackNavigator({
-  Carts: ChatsScreen
+export const ChatStack = createStackNavigator({
+  Inbox: ChatsScreen
 });
 
 ChatStack.navigationOptions = {
-  tabBarLabel: "Chat",
+  tabBarLabel: 'Chat',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === "ios" ? "ios-chatbubbles" : "md-chatbubbles"}
+      name={Platform.OS === 'ios' ? 'ios-chatbubbles' : 'md-chatbubbles'}
     />
   )
 };
 
-const SettingsStack = createStackNavigator({
+export const SettingsStack = createStackNavigator({
   Settings: SettingsScreen
 });
 
 SettingsStack.navigationOptions = {
 
-  tabBarLabel: "Account",
+  tabBarLabel: 'Account',
 
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === "ios" ? "ios-person" : "md-person"}
+      name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
     />
   )
 };
@@ -93,19 +93,17 @@ SettingsStack.navigationOptions = {
 export default createBottomTabNavigator(
   {
     HomeStack,
-    ExploreStack,
     PostsStack,
-    ChatStack,
-    SettingsStack
+    ExploreStack,
   },
   {
     tabBarOptions: {
-      activeTintColor: colors.tintColor,
+      activeTintColor: Colors.tintColor,
       labelStyle: {
         fontSize: 10
       },
       style: {
-        backgroundColor: colors.background
+        backgroundColor: Colors.background
       }
     }
   }

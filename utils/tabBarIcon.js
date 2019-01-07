@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { MaterialIcons } from "@expo/vector-icons";
-import * as React from "react";
+import { MaterialIcons } from '@expo/vector-icons';
+import * as React from 'react';
 
 const tabBarIcon = name => ({ tintColor }) => (
   <MaterialIcons
-    style={{ backgroundColor: "transparent" }}
+    style={{ backgroundColor: 'transparent' }}
     name={name}
     color={tintColor}
     size={24}
