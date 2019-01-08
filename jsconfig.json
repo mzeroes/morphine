@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "test/*": ["__test__/*"],
+      "auth": ["auth"],
+      "components": ["components"],
+      "utils": ["utils"],
+      "config": ["config"],
+      "navigation": [
+        "navigation"
+      ],
+      "screens": ["screens"],
+      "styles": ["styles"],
+      "app": ["."]
+    }
+  }
+}
