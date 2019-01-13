@@ -4,21 +4,22 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      ['module-resolver', {
-        root: ['./src'],
-        alias: {
-          app: '.',
-          test: './test',
-          auth: './auth',
-          api: './api',
-          styles: './styles',
-          components: './components',
-          utils: './utils',
-          config: './config',
-          navigation: './navigation',
-          screens: './screens',
+      [
+        'module-resolver',
+        {
+          root: ['.'],
+          alias: {
+            api: './api',
+            assets: './assets',
+            theme: './theme',
+            components: './components',
+            screens: './screens',
+            navigation: './navigation',
+            test: './test',
+            utils: './utils'
+          }
         }
-      }]
+      ]
     ]
   };
 };

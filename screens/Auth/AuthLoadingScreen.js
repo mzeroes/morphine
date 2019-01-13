@@ -1,49 +1,37 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  StatusBar,
-  View,
-  Text
-} from 'react-native';
+import { View, Text, StatusBar, ActivityIndicator } from 'react-native';
+import { connect } from 'react-redux';
 
-import { getUser } from 'auth/authFirebase';
-import { Colors } from 'app/constants';
-import store from 'app/redux/store';
+import { styles, Theme } from 'theme';
 
-export default class AuthLoadingScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.bootstrapAsync();
-  }
+import { authStateAsync } from 'components/auth/authFirebase';
 
-  state = { validatedUser: false };
-
+class AuthLoadingScreen extends React.Component {
   bootstrapAsync = async () => {
-    getUser()
-      .then(() => {
-        this.setState({ validatedUser: true });
-      }).then(() => {
-        this.props.navigation
-          .navigate(this.state.validatedUser ? 'App' : 'Auth');
-      }).catch((err) => {
-        console.log(`${err}`);
-      });
+    await authStateAsync();
   };
+
+  componentDidMount() {
+    this.bootstrapAsync();
+    this.props.navigation.navigate(this.props.isLoggedIn ? 'App' : 'Auth');
+  }
 
   render() {
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignContent: 'center',
-          backgroundColor: Colors.background
-        }}
-      >
-        <StatusBar backgroundColor={Colors.statusbar} barStyle="dark-content" />
-        <Text style={{ alignSelf: 'center', margin: 20 }}>Loading</Text>
-        <ActivityIndicator size="large" />
+      <View style={styles.container}>
+        <StatusBar
+          backgroundColor={Theme.statusbar}
+          barStyle={Theme.barStyle}
+        />
+        <ActivityIndicator />
+        <Text>{this.props.isLoggedIn}</Text>
       </View>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  isLoggedIn: state.isLoggedIn
+});
+
+export default connect(mapStateToProps)(AuthLoadingScreen);

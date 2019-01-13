@@ -11,9 +11,13 @@ class AnimatedBG extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={this.props.animationContainer || styles.animationContainer}>
+        <View
+          style={this.props.animationContainer || styles.animationContainer}
+        >
           <Lottie
-            ref={(animation) => { this.animation = animation; }}
+            ref={(animation) => {
+              this.animation = animation;
+            }}
             style={this.props.animationStyle || styles.animation}
             source={this.props.animationfile}
             loop={this.props.loop || true}
@@ -38,7 +42,7 @@ const styles = StyleSheet.create({
   animationContainer: {
     position: 'absolute',
     height: '100%',
-    width: '100%',
+    width: '100%'
   },
   otherComponentsContainer: {
     position: 'absolute',
@@ -50,8 +54,8 @@ const styles = StyleSheet.create({
   },
   animation: {
     height: '100%',
-    width: '100%',
-  },
+    width: '100%'
+  }
 });
 
 export default AnimatedBG;

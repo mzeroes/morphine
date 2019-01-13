@@ -5,28 +5,25 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView
 } from 'react-native';
-import {
-  TextInput
-} from 'react-native-paper';
-
-import { RkButton, RkText } from 'react-native-ui-kitten';
-import styles from '../../styles';
-import { Colors } from '../../constants';
+import { TextInput } from 'react-native-paper';
+import { Theme, styles } from 'theme';
 
 const SignUpForm = ({
   values,
   errors,
   touched,
+  // eslint-disable-next-line no-unused-vars
   handleBlur,
   isSubmitting,
   setFieldTouched,
+  // eslint-disable-next-line no-unused-vars
   handleChange,
   handleSubmit,
   setFieldValue
 }) => (
   <View style={{ flex: 1 }}>
     <KeyboardAvoidingView style={{ marginTop: 20 }}>
-      <TextInput
+      {/* <TextInput
         onChangeText={value => setFieldValue('name', value)}
         mode="outlined"
         value={values.name}
@@ -38,11 +35,12 @@ const SignUpForm = ({
       />
       <Text style={styles.errorText}>
         {touched.name && errors.name ? errors.name : undefined}
-      </Text>
+      </Text> */}
       <TextInput
         onChangeText={value => setFieldValue('email', value)}
-        mode="outlined"
+        // mode="outlined"
         keyboardType="email-address"
+        underlineColor="transparent"
         value={values.email}
         label="Email"
         onBlur={() => setFieldTouched('email')}
@@ -55,39 +53,47 @@ const SignUpForm = ({
       </Text>
 
       <TextInput
+        theme={{ roundness: 3 }}
         onChangeText={value => setFieldValue('password', value)}
         secureTextEntry
-        mode="outlined"
+        // mode="outlined"
         value={values.password}
+        underlineColor="transparent"
         label="password"
         placeholder=""
         disabled={errors.email}
         onBlur={() => setFieldTouched('password')}
         editable={!isSubmitting}
-        error={touched.password && errors.password ? errors.password : undefined}
+        error={
+          touched.password && errors.password ? errors.password : undefined
+        }
       />
       <Text style={styles.errorText}>
         {touched.password && errors.password ? errors.password : undefined}
       </Text>
     </KeyboardAvoidingView>
     <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-      <RkButton
-        onPress={() => { handleSubmit(); }}
-        style={[styles.touchableButton, {
-          width: '100%',
-          alignItems: 'center',
-          backgroundColor: Colors.red,
-          borderRadius: 4,
-          padding: 14,
-          marginTop: 10,
-          marginBottom: 10,
-        }]}
+      <TouchableOpacity
+        onPress={() => {
+          handleSubmit();
+        }}
+        style={[
+          styles.touchableButton,
+          {
+            width: '100%',
+            alignItems: 'center',
+            backgroundColor: Theme.red,
+            borderRadius: 4,
+            padding: 14,
+            marginTop: 10,
+            marginBottom: 10
+          }
+        ]}
       >
-          Continue
-      </RkButton>
+        <Text style={{ color: Theme.white, fontWeight: 'bold' }}>Continue</Text>
+      </TouchableOpacity>
     </View>
   </View>
-
 );
 
 export default SignUpForm;

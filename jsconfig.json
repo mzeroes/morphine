@@ -2,17 +2,17 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "test/*": ["__test__/*"],
-      "auth": ["auth"],
-      "components": ["components"],
-      "utils": ["utils"],
-      "config": ["config"],
+      "api": ["api/*"],
+      "assets": ["assets/*"],
+      "theme": ["theme/*"],
+      "components": ["components/*"],
+      "styles": ["styles/*"],
+      "screens": ["screens/*"],
       "navigation": [
-        "navigation"
+        "navigation/*"
       ],
-      "screens": ["screens"],
-      "styles": ["styles"],
-      "app": ["."]
+      "utils": ["utils"],
+      "test": ["__test__/*"],
     }
   }
 }

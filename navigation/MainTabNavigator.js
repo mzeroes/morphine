@@ -5,13 +5,13 @@ import {
   createBottomTabNavigator
 } from 'react-navigation';
 
-import TabBarIcon from '../components/TabBarIcon';
+import { styles, Theme } from 'theme';
+import TabBarIcon from '../components/icons/TabBarIcon';
 import HomeScreen from '../screens/Main/HomeScreen';
 import ExploreScreen from '../screens/Main/ExploreScreen';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
-import { Colors } from '../constants';
-import ChatsScreen from '../screens/Main/ChatsScreen';
 import PostsScreen from '../screens/Main/PostsScreen';
+import SearchScreen from '../screens/Main/SearchScreen';
 
 export const HomeStack = createStackNavigator({
   Home: HomeScreen
@@ -23,16 +23,15 @@ HomeStack.navigationOptions = {
     <TabBarIcon
       focused={focused}
       name={
-        Platform.OS === 'ios'
-          ? `ios-pin${focused ? '' : '-outline'}`
-          : 'md-pin'
+        Platform.OS === 'ios' ? `ios-pin${focused ? '' : '-outline'}` : 'md-pin'
       }
     />
   )
 };
 
 export const ExploreStack = createStackNavigator({
-  Explore: ExploreScreen
+  Explore: ExploreScreen,
+  Search: SearchScreen
 });
 
 ExploreStack.navigationOptions = {
@@ -59,9 +58,8 @@ PostsStack.navigationOptions = {
   )
 };
 
-
 export const ChatStack = createStackNavigator({
-  Inbox: ChatsScreen
+  Inbox: SearchScreen
 });
 
 ChatStack.navigationOptions = {
@@ -79,7 +77,6 @@ export const SettingsStack = createStackNavigator({
 });
 
 SettingsStack.navigationOptions = {
-
   tabBarLabel: 'Account',
 
   tabBarIcon: ({ focused }) => (
@@ -92,18 +89,18 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator(
   {
-    HomeStack,
-    PostsStack,
     ExploreStack,
+    HomeStack,
+    PostsStack
   },
   {
     tabBarOptions: {
-      activeTintColor: Colors.tintColor,
+      activeTintColor: Theme.activeTintColor,
       labelStyle: {
         fontSize: 10
       },
       style: {
-        backgroundColor: Colors.background
+        backgroundColor: styles.bottomTab
       }
     }
   }

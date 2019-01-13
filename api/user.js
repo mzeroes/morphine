@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native';
+import { Permissions, Contacts } from 'expo';
 
 export const resetTokenInStore = async () => {
   await AsyncStorage.setItem('userToken', '');
@@ -10,8 +11,8 @@ export const validateFBToken = async (token) => {
     try {
       const response = await fetch(
         'https://graph.facebook.com/'
-        + 'me?fields=id,email,name,picture'
-        + `&access_token=${token}`
+          + 'me?fields=id,email,name,picture'
+          + `&access_token=${token}`
       );
       return response.json();
     } catch (err) {
@@ -77,7 +78,7 @@ export const userDetails = async (tokenData) => {
           name: response.name,
           id: response.id,
           picture: response.picture.data.url,
-          email: response.email,
+          email: response.email
         };
       }
       return false;
@@ -90,7 +91,7 @@ export const userDetails = async (tokenData) => {
           name: response.name,
           id: response.id,
           picture: response.picture,
-          email: response.email,
+          email: response.email
         };
       }
       return false;
@@ -103,16 +104,45 @@ export const userDetails = async (tokenData) => {
   }
 };
 
+export const getPhoneContactsAsync = async () => {
+  const { status } = await Permissions.askAsync(Permissions.CONTACTS);
+
+  if (status === 'granted') {
+    const { data } = await Contacts.getContactsAsync({
+      pageSize: 100,
+      offset: 0,
+      fields: [
+        Contacts.Fields.ID,
+        Contacts.Fields.Emails,
+        Contacts.Fields.Name,
+        Contacts.Fields.PhoneNumbers
+      ]
+    });
+    return data;
+  } else {
+    throw new Error('Location permission not granted');
+  }
+};
+
 export const usersAsync = async () => {
-  const response = await fetch('https://randomuser.me/api/?page=3&results=40&seed=abcd');
-  const { results } = await response.json();
+  // const response = await fetch('https://randomuser.me/api/?page=3&results=40&seed=abcd');
+
+  // const { results } = await response.json();
+  const results = await getPhoneContactsAsync();
+
+  // console.log(results);
 
   const processUsers = user => ({
-    id: user.phone,
-    image: user.picture.medium,
-    name: `${user.name.first} ${user.name.last}`,
-    email: user.email,
+    id: user.id,
+    name: user.name,
+    phoneNumbers: user.phoneNumbers,
+    image: null,
+    emails: user.emails
   });
+
+  // console.log(Object.entries(results)[1]);
+  // const users = mapper(results, value => value);
+
   const users = results.map(processUsers);
   return users;
 };

@@ -1,15 +1,23 @@
 export const firebaseConfig = {
-  apiKey: 'AIzaSyAIDudCd4OLncLjbmad7Mr41Bv1n67jFmw',
-  authDomain: 'strictly-dc23a.firebaseapp.com',
-  databaseURL: 'https://strictly-dc23a.firebaseio.com',
-  projectId: 'strictly-dc23a',
-  storageBucket: 'strictly-dc23a.appspot.com',
-  messagingSenderId: '46193880680'
+  apiKey: 'AIzaSyCXHZdyRWTu966yLqBSp-J3vr0H9-tAwfw',
+  authDomain: 'morphine-c575e.firebaseapp.com',
+  databaseURL: 'https://morphine-c575e.firebaseio.com',
+  projectId: 'morphine-c575e',
+  storageBucket: 'morphine-c575e.appspot.com',
+  messagingSenderId: '476738921999'
 };
+
 export const authConfig = {
-  FB_APP_ID: '2193449504225064',
-  GOOGLE_CLIENT_ID: '46193880680-89bh13e3ub4bphbgm42u1gm0qs1msubr.apps.googleusercontent.com'
+  FB_APP_ID: '392383188246607',
+  GOOGLE_CLIENT_ID:
+    '476738921999-3ohiae0ob8f5kdbab7o833u3fvubbf79.apps.googleusercontent.com',
+  GOOGLE_ANDROID_CLIENT_ID:
+    '476738921999-3ohiae0ob8f5kdbab7o833u3fvubbf79.apps.googleusercontent.com'
 };
+
+export const apiUrl = 'http://www.omdbapi.com/';
+export const apiImgUrl = 'http://img.omdbapi.com/';
+export const apiKey = 'b6542e8b';
 
 export const loginConfig = {
   email: ''

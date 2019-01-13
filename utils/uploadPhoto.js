@@ -30,5 +30,5 @@ export default async function uploadImageAsync(uri) {
   // };
 
   // return fetch(apiUrl, options);
-  return null;
+  return uri;
 }

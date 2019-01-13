@@ -1,89 +1,75 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  AsyncStorage,
-  TouchableOpacity
-} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Theme, styles } from 'theme';
 import Onboarding from 'react-native-onboarding-swiper';
 
-import { Colors } from '../../constants';
-import OnBoardingAnimation from '../../components/OnBoardingAnimation';
-import styles from '../../styles';
+import OnBoardingAnimation from 'components/animation/OnBoardingAnimation';
+import { storeItemAsync } from 'api/asyncStore';
 
-const animationfile1 = require('../../assets/animations/floating_cloud.json');
-const animationfile2 = require('../../assets/animations/waves.json');
+const animationfile1 = require('assets/animations/floating_cloud.json');
+const animationfile2 = require('assets/animations/waves.json');
+
+const OnboardDoneAsync = async (props, navigateTo) => {
+  storeItemAsync('isOnboardDone', 'true');
+  props.navigation.navigate(navigateTo);
+};
 
 const OnboardingScreen = props => (
-  <View style={styles.container}>
+  <View
+    style={[
+      styles.container,
+      { paddingBottom: 30, backgroundColor: Theme.white }
+    ]}
+  >
     <Onboarding
       bottomBarHighlight={false}
       showSkip={false}
       // showNext={false}
       showDone={false}
-      onDone={async () => {
-        await AsyncStorage.setItem('isOnboardDone', 'true');
-        props.navigation.navigate('Providers');
+      onDone={() => {
+        OnboardDoneAsync(props, 'Providers');
       }}
       pages={[
         {
-          backgroundColor: Colors.background,
-          image: <OnBoardingAnimation
-            animationfile={animationfile1}
-          />,
-          title: 'Page 1',
-          subtitle: '',
+          backgroundColor: Theme.white,
+          image: <OnBoardingAnimation animationfile={animationfile1} />,
+          title: 'This is a very awesome App',
+          subtitle: ''
         },
         {
-          backgroundColor: Colors.background,
-          image: <OnBoardingAnimation
-            animationfile={animationfile2}
-          />,
-          title: 'Page 2',
-          subtitle: '',
+          backgroundColor: Theme.white,
+          image: <OnBoardingAnimation animationfile={animationfile2} />,
+          title: 'Use it as you like it',
+          subtitle: ''
         },
         {
-          backgroundColor: Colors.background,
-          image: <OnBoardingAnimation
-            animationfile={animationfile1}
-          />,
-          title: 'Page 3',
-          subtitle: '',
-        },
+          backgroundColor: Theme.white,
+          image: <OnBoardingAnimation animationfile={animationfile1} />,
+          title: 'Why not try it?',
+          subtitle: ''
+        }
       ]}
     />
     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ color: Colors.primary, fontSize: 16, fontWeight: 'bold' }}>Ready to get started ? </Text>
-
       <TouchableOpacity
         onPress={() => {
-          props.navigation.navigate('Providers');
+          OnboardDoneAsync(props, 'Providers');
         }}
         style={{
           alignItems: 'center',
-          backgroundColor: Colors.primary,
+          backgroundColor: Theme.overlay,
           borderRadius: 4,
-          padding: 14,
+          padding: 10,
           marginTop: 10,
           width: '70%'
         }}
       >
-        <Text style={{ color: Colors.textLight, fontSize: 18, fontWeight: 'bold' }}>GET STARTED</Text>
-      </TouchableOpacity>
-      <View style={{ flexDirection: 'row', margin: 20 }}>
-        <Text style={{ fontSize: 16 }}>Have an account? </Text>
-
-        <TouchableOpacity
-          onPress={() => {
-            props.navigation.navigate('Login');
-          }}
-          style={{
-          }}
+        <Text
+          style={{ color: Theme.surface, fontSize: 18, fontWeight: 'bold' }}
         >
-          <Text style={[styles.linkText, { fontSize: 16, fontWeight: 'bold' }]}>Log In</Text>
-        </TouchableOpacity>
-      </View>
-
+          Get Started
+        </Text>
+      </TouchableOpacity>
     </View>
   </View>
 );

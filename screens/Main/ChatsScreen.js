@@ -1,18 +1,19 @@
 /* eslint-disable class-methods-use-this */
 import React from 'react';
-import { ScrollView, View, Text, TouchableOpacity, Button, Platform } from 'react-native';
+import { View, TouchableOpacity, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import { GiftedChat, InputToolbar, Bubble, Send } from 'react-native-gifted-chat';
+import {
+  GiftedChat,
+  InputToolbar,
+  Bubble,
+  Send
+} from 'react-native-gifted-chat';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
-import { RkTextInput } from 'react-native-ui-kitten';
 import TabBarIcon from 'components/icons/TabBarIcon';
-
-import { IconButton } from 'react-native-paper';
 import IconWrap from 'components/icons/IconWrap';
-import { background } from 'styles/colors';
-import { Colors } from '../../constants';
-import styles from '../../styles';
-import NavigationService from '../../utils/NavigationService';
+import NavigationService from 'utils/NavigationService';
+import { Theme, styles } from 'theme';
+import { TextInput } from 'react-native-paper';
 
 class ChatsScreen extends React.Component {
   static navigationOptions = {
@@ -22,7 +23,7 @@ class ChatsScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: [],
+      messages: []
     };
   }
 
@@ -36,16 +37,16 @@ class ChatsScreen extends React.Component {
           user: {
             _id: 2,
             name: 'React Native',
-            avatar: 'https://placeimg.com/140/140/any',
-          },
-        },
-      ],
+            avatar: 'https://placeimg.com/140/140/any'
+          }
+        }
+      ]
     });
   }
 
   onSend(messages = []) {
     this.setState(previousState => ({
-      messages: GiftedChat.append(previousState.messages, messages),
+      messages: GiftedChat.append(previousState.messages, messages)
     }));
   }
 
@@ -55,14 +56,13 @@ class ChatsScreen extends React.Component {
         {...props}
         wrapperStyle={{
           right: {
-            backgroundColor: Colors.tintColor,
+            backgroundColor: Theme.tintColor,
             padding: 6
           },
           left: {
-            backgroundColor: Colors.surface,
+            backgroundColor: Theme.surface,
             padding: 6
-
-          },
+          }
         }}
       />
     );
@@ -71,7 +71,11 @@ class ChatsScreen extends React.Component {
   renderSend(props) {
     return (
       <Send {...props} style={{ alignContent: 'center' }}>
-        <IconWrap name="md-send" size={30} style={{ marginBottom: 4, paddingRight: 12 }} />
+        <IconWrap
+          name="md-send"
+          size={30}
+          style={{ marginBottom: 4, paddingRight: 12 }}
+        />
       </Send>
     );
   }
@@ -82,7 +86,7 @@ class ChatsScreen extends React.Component {
       <InputToolbar
         {...props}
         containerStyle={{
-          backgroundColor: Colors.surface,
+          backgroundColor: Theme.surface
         }}
       />
     );
@@ -90,20 +94,16 @@ class ChatsScreen extends React.Component {
 
   render() {
     return (
-      <View style={[styles.container, { backgroundColor: Colors.grey }]}>
+      <View style={[styles.container, { backgroundColor: Theme.grey }]}>
         <View style={styles.topBarStyle}>
-          <TouchableOpacity onPress={() => {
-            NavigationService.toggleDrawer();
-          }}
+          <TouchableOpacity
+            onPress={() => {
+              NavigationService.toggleDrawer();
+            }}
           >
-            <TabBarIcon
-              name="ios-menu"
-              size={28}
-            />
+            <TabBarIcon name="ios-menu" size={28} />
           </TouchableOpacity>
-          <RkTextInput
-            placeholder="Messages..."
-          />
+          <TextInput placeholder="Messages..." />
         </View>
         <GiftedChat
           renderSend={this.renderSend}
@@ -112,7 +112,7 @@ class ChatsScreen extends React.Component {
           messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
           user={{
-            _id: 1,
+            _id: 1
           }}
         />
         {Platform.OS === 'android' ? <KeyboardSpacer /> : null}

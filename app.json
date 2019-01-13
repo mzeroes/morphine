@@ -14,7 +14,7 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#E5F3DF"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,12 +24,16 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "in.mzeroes.morphine"
+      "bundleIdentifier": "host.exp.exponent",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "<YOUR_IOS_CLIENT_ID>"
+        }
+      }
     },
     "android": {
-      "package": "in.mzeroes.morphine",
-      "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
-      "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
+      "package": "host.exp.exponent",
+      "googleServicesFile": "./config/google-services.json"
     },
     "scheme": "morphine"
   }

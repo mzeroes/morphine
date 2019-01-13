@@ -1,68 +1,73 @@
 import React from 'react';
-import {
-  FlatList,
-  View,
-  TouchableOpacity
-} from 'react-native';
-import { RkTextInput } from 'react-native-ui-kitten';
-import styles from 'styles';
-import ProfileView from 'components/ProfileCard';
+
+import { View } from 'react-native';
+
+import { AppLoading } from 'expo';
+import { connect } from 'react-redux';
+
+import DataList from 'components/cards/DataList';
+
 import { usersAsync } from 'api/user';
-import { Colors } from 'app/constants';
-import TabBarIcon from 'components/icons/TabBarIcon';
-import NavigationService from 'utils/NavigationService';
+import { TopSearchBar } from 'components';
 
-
-export default class ExploreScreen extends React.Component {
+class ExploreScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
 
   state = {
-    users: []
+    isLoadingComplete: false,
+    data: '',
+    isFetching: false
+  };
+
+  onRefresh() {
+    this.setState({ isFetching: true });
+    this.loadResourcesAsync();
   }
 
-  constructor(props) {
-    super(props);
-    this.bootstrap();
-  }
+  loadResourcesAsync = async () => {
+    const data = await usersAsync();
+    this.setState({ data });
+    this.setState({ isFetching: false });
+  };
 
-  keyExtractor = (item, index) => item.id;
+  handleLoadingError = (error) => {
+    console.warn(error);
+  };
 
-  bootstrap = async () => {
-    const users = await usersAsync();
-    this.setState({ users });
+  handleFinishLoading = () => {
+    this.setState({ isLoadingComplete: true });
   };
 
   render() {
-    const { users } = this.state;
-    return (
-
-      <View style={{
-        flex: 1,
-        backgroundColor: Colors.background
-      }}
-      >
-        <View style={styles.topBarStyle}>
-          <TouchableOpacity onPress={() => {
-            NavigationService.toggleDrawer();
-          }}
-          >
-            <TabBarIcon
-              name="ios-menu"
-              size={28}
-            />
-          </TouchableOpacity>
-          <RkTextInput
-            placeholder="Search..."
+    if (!this.state.isLoadingComplete) {
+      return (
+        <AppLoading
+          startAsync={this.loadResourcesAsync}
+          onError={this.handleLoadingError}
+          onFinish={this.handleFinishLoading}
+        />
+      );
+    } else {
+      const { data } = this.state;
+      const { navigation } = this.props;
+      return (
+        <View style={{ padding: 0, margin: 0, flex: 1 }}>
+          <TopSearchBar data={data} navigation={navigation} />
+          <DataList
+            data={data}
+            onRefresh={() => this.onRefresh()}
+            refreshing={this.state.isFetching}
           />
         </View>
-        <FlatList
-          data={users}
-          renderItem={({ item }) => <ProfileView profileDetails={item} />}
-          keyExtractor={this.keyExtractor}
-        />
-      </View>
-    );
+      );
+    }
   }
 }
+
+const mapStateToProps = state => ({
+  darkMode: state.darkMode
+});
+
+export default connect(mapStateToProps)(ExploreScreen);

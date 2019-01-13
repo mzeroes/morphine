@@ -1,27 +1,29 @@
 import React from 'react';
 import {
   Text,
-  View,
-  Image,
   TouchableOpacity,
+  View,
   KeyboardAvoidingView
 } from 'react-native';
-import {
-  TextInput
-} from 'react-native-paper';
+
+import { styles } from 'theme';
+
+import { TextInput } from 'react-native-paper';
 // import { TextInputMask } from "react-native-text-input-mask";
-import { RkButton } from 'react-native-ui-kitten';
-import { Icon } from 'expo';
-import styles from '../../styles';
-import { Colors } from '../../constants';
+// import { RkButton } from 'react-native-ui-kitten';
+// import { Icon } from 'expo';
+// import  from 'styles';
+// import { Theme } from 'theme';
 
 const LoginForm = ({
   values,
   errors,
   touched,
+  // eslint-disable-next-line no-unused-vars
   handleBlur,
   isSubmitting,
   setFieldTouched,
+  // eslint-disable-next-line no-unused-vars
   handleChange,
   handleSubmit,
   setFieldValue
@@ -30,7 +32,8 @@ const LoginForm = ({
     <TextInput
       onChangeText={value => setFieldValue('email', value)}
       keyboardType="email-address"
-      mode="outlined"
+      underlineColor="transparent"
+      // mode="outlined"
       value={values.email}
       label="Email"
       onBlur={() => setFieldTouched('email')}
@@ -41,11 +44,11 @@ const LoginForm = ({
     <Text style={styles.errorText}>
       {touched.email && errors.email ? errors.email : undefined}
     </Text>
-
     <TextInput
       onChangeText={value => setFieldValue('password', value)}
       secureTextEntry
-      mode="outlined"
+      underlineColor="transparent"
+      // mode="outlined"
       value={values.password}
       label="password"
       placeholder=""
@@ -58,19 +61,22 @@ const LoginForm = ({
       {touched.password && errors.password ? errors.password : undefined}
     </Text>
     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-      <RkButton
+      <TouchableOpacity
         onPress={handleSubmit}
-        style={[styles.touchableButton, {
-          width: '100%',
-          alignItems: 'center',
-          borderRadius: 4,
-          padding: 14,
-          marginTop: 10,
-          marginBottom: 10,
-        }]}
+        style={[
+          styles.touchableButton,
+          {
+            width: '100%',
+            alignItems: 'center',
+            borderRadius: 4,
+            padding: 14,
+            marginTop: 10,
+            marginBottom: 10
+          }
+        ]}
       >
-      Continue
-      </RkButton>
+        <Text style={{ color: '#fff', fontWeight: 'bold' }}>Continue</Text>
+      </TouchableOpacity>
     </View>
   </KeyboardAvoidingView>
 );

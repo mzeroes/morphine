@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'expo';
 
-import { Colors } from '../../constants';
+import { Theme } from 'theme';
 
 const IconWrap = (props) => {
   const size = props.size ? props.size : 28;
@@ -11,7 +11,7 @@ const IconWrap = (props) => {
       name={props.name}
       size={size}
       style={style}
-      color={props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+      color={props.focused ? Theme.tabIconSelected : Theme.tabIconDefault}
     >
       {props.children}
     </Icon.Ionicons>
